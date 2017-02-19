@@ -19,42 +19,37 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class HotbarListener implements Listener {
-    private final Utilities utilities;
-
-    public HotbarListener(Utilities utilities){
-        this.utilities = utilities;
-    }
 
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
-        if (!event.getPlayer().isOp() && utilities.getHotbarCoordinator().hasHotbar(event.getPlayer())) {
+        if (!event.getPlayer().isOp() && Utilities.getInstance().getHotbarCoordinator().hasHotbar(event.getPlayer())) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onTryMove(InventoryClickEvent event) {
-        if (!event.getWhoClicked().isOp() && utilities.getHotbarCoordinator().hasHotbar((Player) event.getWhoClicked())) {
+        if (!event.getWhoClicked().isOp() && Utilities.getInstance().getHotbarCoordinator().hasHotbar((Player) event.getWhoClicked())) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onTryDrag(InventoryDragEvent event) {
-        if (!event.getWhoClicked().isOp() && utilities.getHotbarCoordinator().hasHotbar((Player) event.getWhoClicked())) {
+        if (!event.getWhoClicked().isOp() && Utilities.getInstance().getHotbarCoordinator().hasHotbar((Player) event.getWhoClicked())) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
-        if (event.getAction() != Action.PHYSICAL && utilities.getHotbarCoordinator().hasHotbar(event.getPlayer())) {
+        if (event.getAction() != Action.PHYSICAL && Utilities.getInstance().getHotbarCoordinator().hasHotbar(event.getPlayer())) {
             if (event.hasItem() || event.hasBlock()) {
                 if (!event.getPlayer().isOp()) {
                     event.setCancelled(true);
                 }
 
-                utilities.getHotbarCoordinator().use(event.getPlayer(),
+                Utilities.getInstance().getHotbarCoordinator().use(event.getPlayer(),
                         event.getPlayer().getInventory().getHeldItemSlot());
             }
         }

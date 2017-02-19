@@ -39,7 +39,7 @@ public class Utilities {
         this.logger = new Logger(plugin);
         this.hotbarCoordinator = new HotbarCoordinator();
         Bukkit.getServer().getPluginManager().registerEvents(new MenuListener(), plugin);
-        Bukkit.getServer().getPluginManager().registerEvents(new HotbarListener(instance), plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(new HotbarListener(), plugin);
         AnnotationRegistry.register(plugin, instance, packageBaseName);
     }
 

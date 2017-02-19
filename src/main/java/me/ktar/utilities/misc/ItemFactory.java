@@ -30,6 +30,14 @@ public class ItemFactory {
         itemStack = stack;
     }
 
+    public static ItemFactory of(Material material){
+        return new ItemFactory(material);
+    }
+
+    public static ItemFactory of(ItemStack stack){
+        return new ItemFactory(stack);
+    }
+
     public ItemMeta getMeta() {
         return itemStack.getItemMeta();
     }

@@ -99,7 +99,7 @@ public class CommandHandler {
     static {
         CommandMap commandMap = null;
         try {
-            Class<?> craftServerClass = ReflectionUtil.getNMSClass("CraftServer");
+            Class<?> craftServerClass = ReflectionUtil.getOBCClass("CraftServer");
             Field field = craftServerClass.getDeclaredField("commandMap");
             field.setAccessible(true);
             commandMap = (CommandMap) field.get(Bukkit.getServer());

@@ -48,11 +48,11 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
         return isEnabled();
     }
 
-    public void setPlayerOnly(boolean playerOnly) {
+    public final void setPlayerOnly(boolean playerOnly) {
         this.playerOnly = playerOnly;
     }
 
-    public void setMinArgLength(int minArgs) {
+    public final void setMinArgLength(int minArgs) {
         this.minArgs = minArgs;
     }
 
@@ -63,7 +63,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
     }
 
     @Override
-    public boolean execute(CommandSender sender, String alias, String[] args) {
+    public final boolean execute(CommandSender sender, String alias, String[] args) {
 
         if (canExecute(sender, alias, args))
             try {
@@ -111,7 +111,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
     }
 
     @Override
-    public List<String> tabComplete(CommandSender sender, String alias, String[] args) {
+    public final List<String> tabComplete(CommandSender sender, String alias, String[] args) {
 
         if (canExecute(sender, alias, args)) {
             List<String> completions = getExecutor().onTabComplete(sender, alias, args);
@@ -140,7 +140,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
      *
      * @return if this command was successfully registered or not.
      */
-    public boolean registerCommand() {
+    public final boolean registerCommand() {
         return CommandHandler.registerCommand(this);
     }
 
@@ -155,7 +155,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
      *
      * @return the executor of this command.
      */
-    public CommandExecutor getExecutor() {
+    public final CommandExecutor getExecutor() {
         return executor;
     }
 
@@ -164,7 +164,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
      *
      * @param executor the new executor of this command.
      */
-    public void setExecutor(CommandExecutor executor) {
+    public final void setExecutor(CommandExecutor executor) {
         this.executor = executor;
     }
 
@@ -178,7 +178,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
      *
      * @return the if this command is enabled and accessible for use.
      */
-    public boolean isEnabled() {
+    public final boolean isEnabled() {
         return enabled;
     }
 
@@ -187,7 +187,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
      *
      * @param enabled the new if this command is enabled and accessible for use.
      */
-    public void setEnabled(boolean enabled) {
+    public final void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -211,7 +211,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
         String className = element.getClassName();
         try {
             className = Class.forName(element.getClassName()).getSimpleName();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException ignored) {
         }
         return String.format("%s: %s.%s(%s:%s)", exception.getClass().getSimpleName(), className,
                 element.getMethodName(), element.getFileName(), element.getLineNumber());
@@ -223,7 +223,7 @@ public class Command extends org.bukkit.command.Command implements CommandExecut
      * @param name - the name to be querying the registered command list for.
      * @return the represented command with the specified name.
      */
-    public static Command getByName(String name) {
+    public final static Command getByName(String name) {
         org.bukkit.command.Command command = CommandHandler.getCommandMap().getCommand(name);
         if (command instanceof Command)
             return (Command) command;

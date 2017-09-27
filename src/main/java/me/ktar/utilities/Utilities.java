@@ -48,7 +48,7 @@ public class Utilities {
      *
      * @param plugin An instance of your plugin
      * @param basePackageName A project-specific (unless placed in a core) base package
-     *                        ex.: "me.ktar.utilities" or "com.spigot" for the latter
+     *                        ex.: "me.ktar.utilities" for project-specific or "com.spigot" for the latter
      */
     public static void initialize(JavaPlugin plugin, String basePackageName){
         if(instance != null){
